@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.dao.UserMapper">
+	<!-- <cache></cache> -->
+	<!-- 分布式缓存 -->
+	<cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+	
+	
+	<select id="selectUserById" parameterType="int" resultType="user">
+		select * from `user` where id = #{id}
+	</select>
+	
+	<select id="selectUserByIds" parameterType="user" resultType="user">
+		select * from user
+	    <where>
+	        <!-- 
+	        	<foreach collection="ids" item="id" open="and (" close=")" separator="or">
+	        		id=#{id}
+        		</foreach>
+	         -->
+	        <foreach collection="ids" item="id" open="id in (" close=") " separator=",">
+	            #{id}
+	        </foreach>
+	    </where>
+	</select>
+	
+	
+	
+	<insert id="insertOne" parameterType="com.ys.pojo.User" useGeneratedKeys="true" keyProperty="id">
+		insert into `user` values(default,#{userName},#{sex},#{birthday},#{address})
+	</insert>
+	
+	<update id="updateUserById" parameterType="com.ys.pojo.User">
+		update `user` set user_name = #{userName} where id = #{id}
+	</update>
+	
+	<delete id="deleteByUserName">
+		delete from `user` where user_name like CONCAT('%',#{userName},'%')
+	</delete>
+	
+	
+	
+	
+	<!-- 测试一级缓存,一对多 -->
+	<select id="getUserById" parameterType="int" resultMap="userOrder">
+		select * from `user` where id = #{id}
+	</select>
+	<resultMap type="user" id="userOrder">
+		<id property="id" column="id" />
+		<result property="userName" column="user_name" />
+		<result property="sex" column="sex" />
+		<result property="birthday" column="birthday" />
+		<result property="address" column="address" />
+		<collection property="orders" javaType="arrayList" ofType="order" select="com.ys.dao.OrderDao.cacheTestSelect" column="id">
+		</collection>
+	</resultMap>
+	
+
+</mapper>
