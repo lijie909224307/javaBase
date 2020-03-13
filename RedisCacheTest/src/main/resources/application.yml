@@ -1,0 +1,29 @@
+server:
+  port: 8888  # 修改内置 tomcat 的端口号
+
+
+spring:
+  datasource:
+    # 数据源配置
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    driver-class-name: com.mysql.jdbc.Driver
+
+  main:
+    allow-bean-definition-overriding: true  # 重名 Bean
+  aop:
+    proxy-target-class: true
+
+  cache:
+    type: redis
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+mybatis:
+  type-aliases-package: com.redis.cache.entity  # 实体类别名
+  mapper-locations: classpath:mapper/*.xml       # 扫描 Mapper 文件,匹配到对应的 Dao方法 上
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

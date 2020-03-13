@@ -1,0 +1,11 @@
+configMode=serverFile
+contextsDir=D\:\\tools\\apache-tomcat-8.5.8\\conf\\Catalina\\localhost
+eclipse.preferences.version=1
+managerUrl=http\://localhost\:8080/manager
+projectsInCp=Activiti-LFP;ActivitiTest2;
+projectsInSourcePath=Activiti-LFP;ActivitiTest2;
+tomcatBase=D\:\\tools\\apache-tomcat-8.5.8\\bin
+tomcatConfigFile=D\:\\tools\\apache-tomcat-8.5.8\\conf\\server.xml
+tomcatDir=D\:\\tools\\apache-tomcat-8.5.8
+tomcatJRE=1548380593247
+tomcatVersion=tomcatV8

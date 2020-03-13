@@ -1,0 +1,47 @@
+package com.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class SimpleTest {
+	public static void main(String[] args) {
+		Connection connection = null;
+		ResultSet rs = null;
+		Statement statement = null;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8&useSSL=false","root","123456");
+			statement = connection.createStatement();
+			rs = statement.executeQuery("select * from user");
+			System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
+			while(rs.next()){
+				String userName =  rs.getString("user_name");
+				System.out.println(userName);
+			}
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				statement.close();
+				rs.close();
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		
+		
+		
+	}
+}

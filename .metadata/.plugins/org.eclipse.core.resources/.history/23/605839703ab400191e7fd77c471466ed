@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ys.mapper.OrderDao">
+	
+	<!-- 简单一对一关联查询 -->
+	<select id="selectOrderById" parameterType="int" resultMap="orderMap">
+		select * from `order` as o
+		left join `user` as u
+		on o.user_id = u.id 
+		where o.id = #{id}
+	</select>
+	<resultMap type="order" id="orderMap">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="number" column="number"/>
+		<association property="user" javaType="user">
+			<id property="id" column="user_id"/>
+			<result property="userName" column="user_name"/>
+			<result property="sex" column="sex"/>
+			<result property="birthday" column="birthday"/>
+			<result property="address" column="address"/>
+		</association>
+	</resultMap>
+
+
+
+
+	<!-- 简单懒加载一对一查询 -->
+	<select id="lazyLoadSelect" parameterType="int" resultMap="lazyLoadMap">
+		select * from `order` where id = #{id}
+	</select>
+	<resultMap type="order" id="lazyLoadMap">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="number" column="number"/>
+		<association property="user" javaType="user" select="selectUserById"></association>
+	</resultMap>
+	<select id="">
+		select * from `user` where id = #{iud}
+	</select>
+	
+</mapper>

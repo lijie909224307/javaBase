@@ -1,0 +1,7 @@
+<classpath>
+  <container id="MyBatisTest!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="D:/Eclipse_WorkSpace/MyBatisTest/WebContent/WEB-INF/lib/mybatis-ehcache-1.0.3.jar">
+      <source-attachment-path>E:/开发环境/ehcache-cache-mybatis-ehcache-1.0.3.zip</source-attachment-path>
+    </entry>
+  </container>
+</classpath>
