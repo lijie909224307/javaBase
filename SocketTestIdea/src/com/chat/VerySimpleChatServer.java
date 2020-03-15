@@ -72,7 +72,7 @@ public class VerySimpleChatServer {
     private void go() {
         clientOutputStream = new ArrayList();
         try {
-            ServerSocket serverSocket = new ServerSocket(5000);
+            ServerSocket serverSocket = new ServerSocket(5555);
             while (true){
                 Socket clientSocket = serverSocket.accept();
                 PrintWriter writer = new PrintWriter(clientSocket.getOutputStream());
