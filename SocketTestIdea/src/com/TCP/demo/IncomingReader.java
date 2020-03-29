@@ -1,4 +1,4 @@
-package com.demo;
+package com.TCP.demo;
 
 import javax.swing.*;
 import java.io.IOException;

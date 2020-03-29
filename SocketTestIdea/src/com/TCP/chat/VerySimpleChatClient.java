@@ -1,4 +1,4 @@
-package com.chat;
+package com.TCP.chat;
 
 import javax.swing.*;
 import java.awt.*;
